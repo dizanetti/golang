@@ -1,1 +1,21 @@
-GET http://localhost:8085/
+### path
+@baseUrl = http://localhost:8085
+
+### GET welcome
+GET {{baseUrl}}/ HTTP/1.1
+
+### POST person
+POST {{baseUrl}}/person HTTP/1.1
+Content-Type: application/json
+
+{
+    "identification": "1",
+    "title": "Test",
+    "description": "Test description"
+}
+
+### GET all person
+GET {{baseUrl}}/persons HTTP/1.1
+
+### GET one person
+GET {{baseUrl}}/persons/1 HTTP/1.1
