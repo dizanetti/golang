@@ -1,3 +1,5 @@
 go mod init lab.com.br
 
 go run .\helloWorld.go
+
+https://medium.com/trainingcenter/golang-d94e16d4b383
