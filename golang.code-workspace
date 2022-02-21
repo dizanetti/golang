@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "api-rest"
+		},
+		{
+			"path": "functions"
+		},
+		{
+			"path": "hello-world"
+		},
+		{
+			"path": "inferencia"
+		},
+		{
+			"path": "structs"
+		},
+		{
+			"path": "variadicFunctions"
+		},
+		{
+			"path": "interfaces"
+		}
+	],
+	"settings": {}
+}
