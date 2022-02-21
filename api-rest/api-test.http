@@ -19,3 +19,16 @@ GET {{baseUrl}}/persons HTTP/1.1
 
 ### GET one person
 GET {{baseUrl}}/persons/1 HTTP/1.1
+
+### PATCH one person
+PATCH {{baseUrl}}/persons/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "identification": "1",
+    "title": "Test",
+    "description": "Test description updated"
+}
+
+### DELETE one person
+DELETE {{baseUrl}}/persons/1 HTTP/1.1

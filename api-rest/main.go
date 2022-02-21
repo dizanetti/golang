@@ -31,6 +31,7 @@ func createPerson(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.Unmarshal(reqBody, &newPerson)
+
 	allPerson = append(allPerson, newPerson)
 	w.WriteHeader(http.StatusCreated)
 
@@ -57,8 +58,9 @@ func updatePerson(w http.ResponseWriter, r *http.Request) {
 
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		fmt.Fprintf(w, "Kindly enter data with the Person title and description only in order to update")
+		fmt.Fprintf(w, "Error")
 	}
+
 	json.Unmarshal(reqBody, &updatedPerson)
 
 	for i, singlePerson := range allPerson {
