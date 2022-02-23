@@ -20,6 +20,9 @@
 		},
 		{
 			"path": "interfaces"
+		},
+		{
+			"path": "mongodb"
 		}
 	],
 	"settings": {}
