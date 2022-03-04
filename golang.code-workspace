@@ -23,6 +23,15 @@
 		},
 		{
 			"path": "mongodb"
+		},
+		{
+			"path": "panic"
+		},
+		{
+			"path": "defer"
+		},
+		{
+			"path": "recover"
 		}
 	],
 	"settings": {}
