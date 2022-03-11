@@ -32,6 +32,15 @@
 		},
 		{
 			"path": "recover"
+		},
+		{
+			"path": "goroutines"
+		},
+		{
+			"path": "channel"
+		},
+		{
+			"path": "select"
 		}
 	],
 	"settings": {}
