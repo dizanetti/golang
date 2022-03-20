@@ -1,12 +1,16 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
-func TestTableAdd(t *testing.T) {
+//Teste de Mesa
+func TestTableDriven(t *testing.T) {
 	tables := []struct {
-		x int
-		y int
-		n int
+		x    int
+		y    int
+		want int
 	}{
 		{1, 1, 2},
 		{1, 2, 3},
@@ -15,9 +19,13 @@ func TestTableAdd(t *testing.T) {
 	}
 
 	for _, table := range tables {
-		total := Add(table.x, table.y)
-		if total != table.n {
-			t.Errorf("Sum of (%d+%d) was incorrect, got: %d, want: %d.", table.x, table.y, total, table.n)
-		}
+		testName := fmt.Sprintf("%d,%d", table.x, table.y)
+
+		t.Run(testName, func(t *testing.T) {
+			total := Add(table.x, table.y)
+			if total != table.want {
+				t.Errorf("Sum of (%d + %d) was incorrect, got: %d, want: %d.", table.x, table.y, total, table.want)
+			}
+		})
 	}
 }
