@@ -41,6 +41,9 @@
 		},
 		{
 			"path": "select"
+		},
+		{
+			"path": "unitTest"
 		}
 	],
 	"settings": {}
