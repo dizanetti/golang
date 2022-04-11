@@ -1,0 +1,23 @@
+{
+    "javaHome": "C:\\desenvolvimento\\java-home\\bin\\",
+    "jdk": [
+        {
+            "version": "8",
+            "java": "C:\\desenvolvimento\\java-home\\jdk\\corretto-1.8.0_322\\bin\\java.exe",
+            "javac": "C:\\desenvolvimento\\java-home\\jdk\\corretto-1.8.0_322\\bin\\javac.exe",
+            "javaw": "C:\\desenvolvimento\\java-home\\jdk\\corretto-1.8.0_322\\bin\\javaw.exe"
+        },
+        {
+            "version": "11",
+            "java": "C:\\desenvolvimento\\java-home\\jdk\\corretto-11.0.14.1\\bin\\java.exe",
+            "javac": "C:\\desenvolvimento\\java-home\\jdk\\corretto-11.0.14.1\\bin\\javac.exe",
+            "javaw": "C:\\desenvolvimento\\java-home\\jdk\\corretto-11.0.14.1\\bin\\javaw.exe"
+        },
+        {
+            "version": "17",
+            "java": "C:\\Program Files\\Java\\jdk-17.0.2\\bin\\java.exe",
+            "javac": "C:\\Program Files\\Java\\jdk-17.0.2\\bin\\javac.exe",
+            "javaw": "C:\\Program Files\\Java\\jdk-17.0.2\\bin\\javaw.exe"
+        }
+    ]
+}

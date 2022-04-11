@@ -14,6 +14,6 @@ func say(s string) {
 
 func main() {
 	// remover a key go
-	go say("world")
-	say("hello")
+	go say("hello")
+	say("world")
 }

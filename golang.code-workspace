@@ -47,6 +47,9 @@
 		},
 		{
 			"path": "redis"
+		},
+		{
+			"path": "copyFile"
 		}
 	],
 	"settings": {}
