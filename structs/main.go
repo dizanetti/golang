@@ -7,6 +7,7 @@ type address struct {
 	number  int
 	country string
 }
+
 type person struct {
 	name string
 	age  int

@@ -50,6 +50,9 @@
 		},
 		{
 			"path": "copyFile"
+		},
+		{
+			"path": "scripting"
 		}
 	],
 	"settings": {}
