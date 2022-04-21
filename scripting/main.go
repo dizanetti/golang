@@ -6,6 +6,7 @@ import (
 
 func main() {
 	execCmdWithMatchWithReject("kubectl get pod", "workflow", "bundle").Stdout()
+	//kubectl get pod | grep workflow | grep -v "bundle" | awk '{print $1}'
 }
 
 func execCmd(command string, match string, reject string) *script.Pipe {
