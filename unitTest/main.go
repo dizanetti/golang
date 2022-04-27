@@ -2,11 +2,11 @@ package main
 
 import "fmt"
 
-func Add(x, y int) (res int) {
+func Add(x, y int) int {
 	return x + y
 }
 
-func Subtract(x, y int) (res int) {
+func Subtract(x, y int) int {
 	return x - y
 }
 

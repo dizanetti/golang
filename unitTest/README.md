@@ -3,6 +3,7 @@ Projeto para codigos de estudo em Go Lang
 
 **Executar testes**
 `go test`
+`go test -v`
 
 **Executar testes com cobertura**
 `go test -cover`
