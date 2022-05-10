@@ -1,0 +1,8 @@
+# Logs
+*.log
+
+# Executable
+*.exe
+
+# Cache file
+.dccache
