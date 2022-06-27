@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"strconv"
+	"time"
 
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
@@ -20,8 +21,33 @@ func createTablePods(commands ...string) {
 		if err != nil {
 			informationText.SetText(err.Error()).SetTextColor(tcell.ColorRed)
 		}
-	}).SetBackgroundColor(tcell.ColorBlack)
+	}).SetBackgroundColor(tcell.ColorBlack).
+		SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
+			if event.Rune() == 100 {
+				row, _ := tablePods.GetSelection()
 
+				podName := tablePods.GetCell(row, 1).Text
+				_, _, err := execPowerShellDelete(podName)
+				if err != nil {
+					informationText.SetText(err.Error()).SetTextColor(tcell.ColorRed)
+				} else {
+					time.Sleep(2 * time.Second)
+
+					tablePods.Clear()
+					configureTablePods(commands...)
+				}
+			} else if event.Rune() == 114 {
+				tablePods.Clear()
+				configureTablePods(commands...)
+			}
+
+			return event
+		})
+
+	configureTablePods(commands...)
+}
+
+func configureTablePods(commands ...string) {
 	indexTable := 1
 	indexHeader := 0
 

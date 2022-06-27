@@ -66,3 +66,21 @@ func execPowerShellContext(context string) (stdOut string, stdErr string, err er
 
 	return posh.runCmd(processCmds)
 }
+
+func execPowerShellDelete(podName string) (stdOut string, stdErr string, err error) {
+	posh := New()
+
+	kubectl, _ := exec.LookPath("kubectl")
+	arguments := "delete pod " + podName
+
+	processCmds := `
+	$newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
+	$newProcess.Arguments = "` + arguments + `";
+	$newProcess.FileName = "` + kubectl + `";
+	$newProcess.CreateNoWindow = "false";
+	$process = [System.Diagnostics.Process]::Start($newProcess);
+	exit	
+	`
+
+	return posh.runCmd(processCmds)
+}
