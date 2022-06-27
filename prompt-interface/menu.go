@@ -47,7 +47,7 @@ var list = tview.NewList().
 		pages.SetTitle("")
 		pages.SwitchToPage("Help")
 	}).
-	AddItem("Quit", "Press to exit", 'q', func() {
+	AddItem("Quit", "Press to exit", 'h', func() {
 		app.Stop()
 	})
 
