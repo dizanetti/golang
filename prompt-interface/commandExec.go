@@ -1,6 +1,9 @@
 package main
 
 import (
+	"bytes"
+	"os/exec"
+
 	"github.com/bitfield/script"
 )
 
@@ -50,4 +53,22 @@ func execCmdWithMatchReturnSlice(command string, match string) ([]string, error)
 
 func execCmdWithMatchWithRejectReturnSlice(command string, match string, reject string) ([]string, error) {
 	return execCmdWithMatchWithReject(command, match, reject).Slice()
+}
+
+func executeKubectlCore(commands ...string) (stdOut string, stdErr string) {
+	kubectl, _ := exec.LookPath("kubectl")
+
+	cmd := exec.Command(kubectl, commands...)
+
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+
+	cmd.Run()
+	stdOut = stdout.String()
+	stdErr = stderr.String()
+
+	return
 }

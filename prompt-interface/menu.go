@@ -9,6 +9,7 @@ var pages = tview.NewPages()
 
 var textC = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText("WIP")
 var welcomeText = tview.NewTextView().SetTextColor(tcell.ColorDarkGrey).SetText(openTextFile(WELCOME_BANNER)).SetTextAlign(tview.AlignCenter)
+var describePod = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetScrollable(true)
 
 var infoPages = tview.NewPages()
 var informationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetTextAlign(tview.AlignCenter)
@@ -18,6 +19,7 @@ var filterForm = tview.NewForm()
 var list = tview.NewList().
 	AddItem("Pod's", "List all Pod's in context", 'l', func() {
 		createTablePods(GET_PODS)
+		tablePods.ScrollToBeginning()
 
 		pages.SwitchToPage("TablesPods")
 		pages.SetTitle("Pod's")
@@ -51,11 +53,11 @@ var list = tview.NewList().
 
 		app.SetFocus(tableContext)
 	}).
-	AddItem("Help", "Informations", 'i', func() {
+	AddItem("Help", "Informations", 'h', func() {
 		pages.SetTitle("")
 		pages.SwitchToPage("Help")
 	}).
-	AddItem("Quit", "Press to exit", 'h', func() {
+	AddItem("Quit", "Press to exit", 'q', func() {
 		app.Stop()
 	})
 
@@ -64,6 +66,7 @@ func setPages() {
 
 	pages.AddPage("filterForm", filterForm, true, true).SetBorder(true)
 	pages.AddPage("Teste C", textC, true, true).SetBorder(true)
+	pages.AddPage("DescribePod", describePod, true, true).SetBorder(true)
 	pages.AddPage("TablesContext", tableContext, true, true).SetBorder(true)
 	pages.AddPage("TablesServices", tableServices, true, true).SetBorder(true)
 	pages.AddPage("TablesPods", tablePods, true, true).SetBorder(true)

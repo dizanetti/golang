@@ -15,6 +15,7 @@ func createTableServices(commands ...string) {
 	tableServices.SetBackgroundColor(tcell.ColorBlack)
 
 	configureTableServices(execute(commands...))
+	tableServices.ScrollToBeginning()
 }
 
 func configureTableServices(result []string, err error) {

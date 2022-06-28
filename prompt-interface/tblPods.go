@@ -23,7 +23,7 @@ func createTablePods(commands ...string) {
 		}
 	}).SetBackgroundColor(tcell.ColorBlack).
 		SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-			if event.Rune() == 100 {
+			if event.Rune() == 100 { // d
 				row, _ := tablePods.GetSelection()
 
 				podName := tablePods.GetCell(row, 1).Text
@@ -36,9 +36,23 @@ func createTablePods(commands ...string) {
 					tablePods.Clear()
 					configureTablePods(commands...)
 				}
-			} else if event.Rune() == 114 {
+			} else if event.Rune() == 114 { // r
 				tablePods.Clear()
 				configureTablePods(commands...)
+			} else if event.Rune() == 105 { // i
+				row, _ := tablePods.GetSelection()
+
+				podName := tablePods.GetCell(row, 1).Text
+
+				describe, errDescribe := executeKubectlCore("describe", "pod", podName)
+				if errDescribe != "" {
+					informationText.SetText(errDescribe).SetTextColor(tcell.ColorRed)
+				} else {
+					describePod.SetText(describe)
+
+					pages.SwitchToPage("DescribePod")
+					pages.SetTitle("Describe")
+				}
 			}
 
 			return event

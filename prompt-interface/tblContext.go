@@ -34,6 +34,7 @@ func createTableContext() {
 	}).SetBackgroundColor(tcell.ColorBlack)
 
 	configureTable(getContexts())
+	tableContext.ScrollToBeginning()
 }
 
 func configureTable(result []string, err error) {
