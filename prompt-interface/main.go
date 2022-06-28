@@ -23,14 +23,8 @@ func main() {
 
 func initProg() {
 	configureShortcuts()
-
-	createTableContext()
-	createTablePods(GET_PODS)
-
 	setPages()
-
 	verifyContext()
-
 	schedulerSeconds(2, verifyContext)
 }
 

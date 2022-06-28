@@ -25,7 +25,7 @@ var list = tview.NewList().
 		app.SetFocus(tablePods)
 	}).
 	AddItem("Services", "List all Services in context", 's', func() {
-		createTableServices()
+		createTableServices(GET_SERVICES)
 
 		pages.SwitchToPage("TablesServices")
 		pages.SetTitle("Services")
@@ -73,17 +73,34 @@ func setPages() {
 }
 
 func setFilterForm() {
-	var value string
+	var valueName string
+	var valueType int
 
 	filterForm.Clear(true)
-	filterForm.AddInputField("Pod Name", "", 25, nil, func(podName string) {
-		value = podName
+	filterForm.AddInputField("Name", "", 25, nil, func(name string) {
+		valueName = name
+	})
+
+	filterForm.AddDropDown("Type", []string{"Pod", "Service"}, 0, func(option string, optionIndex int) {
+		valueType = optionIndex
 	})
 
 	filterForm.AddButton("Find", func() {
-		createTablePods(GET_PODS, value)
-		pages.SwitchToPage("TablesPods")
-		app.SetFocus(tablePods)
+		if valueType == 0 {
+			createTablePods(GET_PODS, valueName)
+
+			pages.SwitchToPage("TablesPods")
+			pages.SetTitle("Pod's")
+
+			app.SetFocus(tablePods)
+		} else if valueType == 1 {
+			createTableServices(GET_SERVICES, valueName)
+
+			pages.SwitchToPage("TablesServices")
+			pages.SetTitle("Services")
+
+			app.SetFocus(tableServices)
+		}
 	})
 
 	filterForm.AddButton("Cancel", func() {

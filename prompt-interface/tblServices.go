@@ -10,11 +10,11 @@ import (
 
 var tableServices = tview.NewTable().SetBorders(true).SetFixed(1, 1).SetSelectable(true, false)
 
-func createTableServices() {
+func createTableServices(commands ...string) {
 	tableServices.Clear()
 	tableServices.SetBackgroundColor(tcell.ColorBlack)
 
-	configureTableServices(getServices())
+	configureTableServices(execute(commands...))
 }
 
 func configureTableServices(result []string, err error) {
