@@ -7,7 +7,7 @@ func splitString(value string, splitString string) []string {
 }
 
 func findAndDelete(s []string, itemToDelete string) []string {
-	var newItens [5]string
+	var newItens [7]string
 	index := 0
 
 	for _, i := range s {

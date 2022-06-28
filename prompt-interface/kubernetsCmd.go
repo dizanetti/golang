@@ -14,3 +14,7 @@ func verifyContext() {
 func getContexts() ([]string, error) {
 	return execute("kubectl config get-contexts")
 }
+
+func getServices() ([]string, error) {
+	return execute("kubectl get services")
+}

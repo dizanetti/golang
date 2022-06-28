@@ -16,13 +16,21 @@ var informationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText
 var filterForm = tview.NewForm()
 
 var list = tview.NewList().
-	AddItem("List all Pod's", "List all Pod's in context", 'l', func() {
+	AddItem("Pod's", "List all Pod's in context", 'l', func() {
 		createTablePods(GET_PODS)
 
 		pages.SwitchToPage("TablesPods")
 		pages.SetTitle("Pod's")
 
 		app.SetFocus(tablePods)
+	}).
+	AddItem("Services", "List all Services in context", 's', func() {
+		createTableServices()
+
+		pages.SwitchToPage("TablesServices")
+		pages.SetTitle("Services")
+
+		app.SetFocus(tableServices)
 	}).
 	AddItem("Filter", "Filter a list of Pod's", 'f', func() {
 		setFilterForm()
@@ -57,6 +65,7 @@ func setPages() {
 	pages.AddPage("filterForm", filterForm, true, true).SetBorder(true)
 	pages.AddPage("Teste C", textC, true, true).SetBorder(true)
 	pages.AddPage("TablesContext", tableContext, true, true).SetBorder(true)
+	pages.AddPage("TablesServices", tableServices, true, true).SetBorder(true)
 	pages.AddPage("TablesPods", tablePods, true, true).SetBorder(true)
 	pages.AddPage("Help", welcomeText, true, true).SetBorder(true)
 
