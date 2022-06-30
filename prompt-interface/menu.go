@@ -9,7 +9,7 @@ var pages = tview.NewPages()
 
 var textC = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText("WIP")
 var welcomeText = tview.NewTextView().SetTextColor(tcell.ColorDarkGrey).SetText(openTextFile(WELCOME_BANNER)).SetTextAlign(tview.AlignCenter)
-var describePod = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetScrollable(true)
+var describePod = tview.NewTextView().SetTextColor(tcell.ColorDarkGrey).SetScrollable(true)
 
 var infoPages = tview.NewPages()
 var informationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetTextAlign(tview.AlignCenter)
@@ -73,6 +73,8 @@ func setPages() {
 	pages.AddPage("Help", welcomeText, true, true).SetBorder(true)
 
 	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle("Information")
+
+	describePodShortcuts()
 }
 
 func setFilterForm() {
@@ -111,5 +113,16 @@ func setFilterForm() {
 		createTablePods(GET_PODS)
 		pages.SwitchToPage("TablesPods")
 		app.SetFocus(tablePods)
+	})
+}
+
+func describePodShortcuts() {
+	describePod.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
+		if event.Rune() == 118 { //v
+			pages.SwitchToPage("TablesPods")
+
+			app.SetFocus(tablePods)
+		}
+		return event
 	})
 }

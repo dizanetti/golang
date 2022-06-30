@@ -9,8 +9,10 @@
     Shortcuts:
                     -> (y) Return to Menu
                             -> (h) Help and Informartions
-                                    -> (d) Delete a POD on table of Pod's
+                          -> (d) Delete a selected POD
                             -> (r) Refresh table of Pod's
+                   -> (i) Describe a Pod
+                                        -> (i) Return to Table's Pod from describe
                               -> (l) List all Pod's in context
                                     -> (s) List Services Pod's in context
                             -> (f) Filter a list of Pod's

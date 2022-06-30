@@ -25,7 +25,7 @@ func initProg() {
 	configureShortcuts()
 	setPages()
 	verifyContext()
-	schedulerSeconds(2, verifyContext)
+	schedulerSeconds(3, verifyContext)
 }
 
 func configureShortcuts() {
