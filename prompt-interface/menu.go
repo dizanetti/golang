@@ -8,8 +8,8 @@ import (
 var pages = tview.NewPages()
 
 var textC = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText("WIP")
-var welcomeText = tview.NewTextView().SetTextColor(tcell.ColorDarkGrey).SetText(openTextFile(WELCOME_BANNER)).SetTextAlign(tview.AlignCenter)
-var describePod = tview.NewTextView().SetTextColor(tcell.ColorDarkGrey).SetScrollable(true)
+var welcomeText = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetText(openTextFile(WELCOME_BANNER)).SetTextAlign(tview.AlignCenter)
+var describePod = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetScrollable(true)
 
 var infoPages = tview.NewPages()
 var informationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetTextAlign(tview.AlignCenter)
