@@ -52,6 +52,8 @@ func createTablePods(commands ...string) {
 
 					pages.SwitchToPage("DescribePod")
 					pages.SetTitle("Describe")
+
+					app.SetFocus(describePod)
 				}
 			}
 
