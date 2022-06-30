@@ -25,7 +25,7 @@ func createTableContext() {
 				informationText.SetText(err.Error()).SetTextColor(tcell.ColorRed)
 			} else {
 				time.Sleep(2 * time.Second)
-				informationText.SetText(CURRENT_CONTEXT + context).SetTextColor(tcell.ColorGreen)
+				informationText.SetText(CURRENT_CONTEXT + context + SHORTCUTS).SetTextColor(tcell.ColorGreen)
 
 				tableContext.Clear()
 				configureTable(getContexts())

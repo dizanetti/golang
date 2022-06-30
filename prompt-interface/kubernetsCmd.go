@@ -7,7 +7,7 @@ func verifyContext() {
 	if errContextK8 != nil {
 		informationText.SetText("Error message: " + errContextK8.Error()).SetTextColor(tcell.ColorRed)
 	} else {
-		informationText.SetText(CURRENT_CONTEXT + contextK8 + "\n (y) - return to Menu (v) return to table / (d) delete a Pod / (i) - describe a pod / (r) - refresh the table").SetTextColor(tcell.ColorGreen)
+		informationText.SetText(CURRENT_CONTEXT + contextK8 + SHORTCUTS).SetTextColor(tcell.ColorGreen)
 	}
 }
 
