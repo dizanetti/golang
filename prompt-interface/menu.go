@@ -5,6 +5,8 @@ import (
 	"github.com/rivo/tview"
 )
 
+var stringShortcuts string = ""
+
 var pages = tview.NewPages()
 
 var textC = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText("WIP")
@@ -18,6 +20,9 @@ var filterForm = tview.NewForm()
 
 var list = tview.NewList().
 	AddItem("Pod's", "List all Pod's in context", 'l', func() {
+		stringShortcuts = SHORTCUTS_PODS
+		verifyContext()
+
 		createTablePods(GET_PODS)
 		tablePods.ScrollToBeginning()
 
@@ -27,6 +32,9 @@ var list = tview.NewList().
 		app.SetFocus(tablePods)
 	}).
 	AddItem("Services", "List all Services in context", 's', func() {
+		stringShortcuts = SHORTCUTS_SERVICES
+		verifyContext()
+
 		createTableServices(GET_SERVICES)
 
 		pages.SwitchToPage("TablesServices")
@@ -35,6 +43,9 @@ var list = tview.NewList().
 		app.SetFocus(tableServices)
 	}).
 	AddItem("Filter", "Filter a list of Pod's", 'f', func() {
+		stringShortcuts = SHORTCUTS_FILTER
+		verifyContext()
+
 		setFilterForm()
 
 		pages.SwitchToPage("filterForm")
@@ -46,6 +57,9 @@ var list = tview.NewList().
 		pages.SwitchToPage("Teste C")
 	}).
 	AddItem("Context", "Change the context", 'c', func() {
+		stringShortcuts = SHORTCUTS_CONTEXT
+		verifyContext()
+
 		createTableContext()
 
 		pages.SwitchToPage("TablesContext")
@@ -54,6 +68,9 @@ var list = tview.NewList().
 		app.SetFocus(tableContext)
 	}).
 	AddItem("Help", "Informations", 'h', func() {
+		stringShortcuts = ""
+		verifyContext()
+
 		pages.SetTitle("")
 		pages.SwitchToPage("Help")
 	}).

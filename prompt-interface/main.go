@@ -25,14 +25,14 @@ func initProg() {
 	configureShortcuts()
 	setPages()
 	verifyContext()
-	schedulerSeconds(3, verifyContext)
+	schedulerSeconds(2, verifyContext)
 }
 
 func configureShortcuts() {
 	app.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Rune() == 121 {
+		if event.Rune() == 121 { // y
 			app.SetFocus(list)
-		} else if event.Rune() == 113 {
+		} else if event.Rune() == 113 { // q
 			app.Stop()
 		}
 
