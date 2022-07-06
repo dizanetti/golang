@@ -9,7 +9,7 @@ var stringShortcuts string = ""
 
 var pages = tview.NewPages()
 
-var textC = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText("WIP")
+var textC = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText("Work in Progress...")
 var welcomeText = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetText(openTextFile(WELCOME_BANNER)).SetTextAlign(tview.AlignCenter)
 var describePod = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetScrollable(true)
 
@@ -53,7 +53,7 @@ var list = tview.NewList().
 
 		app.SetFocus(filterForm)
 	}).
-	AddItem("Maintenance", "Functions to help with POD maintenance", 'm', func() {
+	AddItem("Maintenance", "Functions to POD maintenance", 'm', func() {
 		pages.SwitchToPage("Teste C")
 	}).
 	AddItem("Context", "Change the context", 'c', func() {
@@ -109,6 +109,9 @@ func setFilterForm() {
 
 	filterForm.AddButton("Find", func() {
 		if valueType == 0 {
+			stringShortcuts = SHORTCUTS_PODS
+			verifyContext()
+
 			createTablePods(GET_PODS, valueName)
 
 			pages.SwitchToPage("TablesPods")
@@ -116,6 +119,9 @@ func setFilterForm() {
 
 			app.SetFocus(tablePods)
 		} else if valueType == 1 {
+			stringShortcuts = SHORTCUTS_CONTEXT
+			verifyContext()
+
 			createTableServices(GET_SERVICES, valueName)
 
 			pages.SwitchToPage("TablesServices")
