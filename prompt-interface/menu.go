@@ -54,7 +54,15 @@ var list = tview.NewList().
 		app.SetFocus(tableNodes)
 	}).
 	AddItem("Deployments", "Deployments", 'e', func() {
-		pages.SwitchToPage("Teste C")
+		stringShortcuts = SHORTCUTS_DEPLOYMENTS
+		verifyContext()
+
+		createTableDeployments(GET_DEPLOYMENTS)
+
+		pages.SwitchToPage("TablesDeployments")
+		pages.SetTitle("Deployments")
+
+		app.SetFocus(tableDeployments)
 	}).
 	AddItem("Filter", "Filter a list of Pod's", 'f', func() {
 		stringShortcuts = SHORTCUTS_FILTER
@@ -101,6 +109,7 @@ func setPages() {
 	pages.AddPage("TablesContext", tableContext, true, true).SetBorder(true)
 	pages.AddPage("TablesServices", tableServices, true, true).SetBorder(true)
 	pages.AddPage("TablesNodes", tableNodes, true, true).SetBorder(true)
+	pages.AddPage("TablesDeployments", tableDeployments, true, true).SetBorder(true)
 	pages.AddPage("TablesPods", tablePods, true, true).SetBorder(true)
 	pages.AddPage("Help", welcomeText, true, true).SetBorder(true)
 
