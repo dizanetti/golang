@@ -31,6 +31,17 @@ var list = tview.NewList().
 
 		app.SetFocus(tablePods)
 	}).
+	AddItem("Context", "Change the context", 'c', func() {
+		stringShortcuts = SHORTCUTS_CONTEXT
+		verifyContext()
+
+		createTableContext()
+
+		pages.SwitchToPage("TablesContext")
+		pages.SetTitle("Context")
+
+		app.SetFocus(tableContext)
+	}).
 	AddItem("Services", "List all Services in context", 's', func() {
 		stringShortcuts = SHORTCUTS_SERVICES
 		verifyContext()
@@ -42,7 +53,7 @@ var list = tview.NewList().
 
 		app.SetFocus(tableServices)
 	}).
-	AddItem("Nodes", "Nodes", 'n', func() {
+	AddItem("Nodes", "List all Nodes in context", 'n', func() {
 		stringShortcuts = SHORTCUTS_NODES
 		verifyContext()
 
@@ -53,7 +64,7 @@ var list = tview.NewList().
 
 		app.SetFocus(tableNodes)
 	}).
-	AddItem("Deployments", "Deployments", 'e', func() {
+	AddItem("Deployments", "List all Deployments in context", 'e', func() {
 		stringShortcuts = SHORTCUTS_DEPLOYMENTS
 		verifyContext()
 
@@ -64,7 +75,7 @@ var list = tview.NewList().
 
 		app.SetFocus(tableDeployments)
 	}).
-	AddItem("Filter", "Filter a list of Pod's", 'f', func() {
+	AddItem("Filter", "Filter a list of Pod's/Services", 'f', func() {
 		stringShortcuts = SHORTCUTS_FILTER
 		verifyContext()
 
@@ -77,17 +88,6 @@ var list = tview.NewList().
 	}).
 	AddItem("Maintenance", "Functions to POD maintenance", 'm', func() {
 		pages.SwitchToPage("Teste C")
-	}).
-	AddItem("Context", "Change the context", 'c', func() {
-		stringShortcuts = SHORTCUTS_CONTEXT
-		verifyContext()
-
-		createTableContext()
-
-		pages.SwitchToPage("TablesContext")
-		pages.SetTitle("Context")
-
-		app.SetFocus(tableContext)
 	}).
 	AddItem("Help", "Informations", 'h', func() {
 		stringShortcuts = ""

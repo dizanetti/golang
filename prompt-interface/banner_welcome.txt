@@ -12,12 +12,14 @@
                           -> (d) Delete a selected POD
                             -> (r) Refresh table of Pod's
                    -> (i) Describe a Pod
-                                        -> (i) Return to Table's Pod from describe
+                                        -> (v) Return to Table's Pod from describe
                               -> (l) List all Pod's in context
                                     -> (s) List Services Pod's in context
                             -> (f) Filter a list of Pod's
                                             -> (m) Functions to help with POD maintenance
                         -> (c) Change the context
+                              -> (n) List all Nodes in context
+                                    -> (e) List all Deployments in context
           -> (q) Quit
 
 Informartions
