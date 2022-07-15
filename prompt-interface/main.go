@@ -30,9 +30,9 @@ func initProg() {
 
 func configureShortcuts() {
 	app.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Rune() == 121 { // y
+		if event.Rune() == rune(tcell.KeyCtrlY) {
 			app.SetFocus(list)
-		} else if event.Rune() == 113 { // q
+		} else if event.Rune() == rune(tcell.KeyCtrlQ) {
 			app.Stop()
 		}
 

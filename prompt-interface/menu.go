@@ -19,7 +19,7 @@ var informationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText
 var filterForm = tview.NewForm()
 
 var list = tview.NewList().
-	AddItem("Pod's", "List all Pod's in context", 'l', func() {
+	AddItem("Pod's", "List all Pod's in context", rune(tcell.KeyCtrlP), func() {
 		stringShortcuts = SHORTCUTS_PODS
 		verifyContext()
 
@@ -31,7 +31,7 @@ var list = tview.NewList().
 
 		app.SetFocus(tablePods)
 	}).
-	AddItem("Context", "Change the context", 'c', func() {
+	AddItem("Context", "Change the context", rune(tcell.KeyCtrlC), func() {
 		stringShortcuts = SHORTCUTS_CONTEXT
 		verifyContext()
 
@@ -42,7 +42,7 @@ var list = tview.NewList().
 
 		app.SetFocus(tableContext)
 	}).
-	AddItem("Services", "List all Services in context", 's', func() {
+	AddItem("Services", "List all Services in context", rune(tcell.KeyCtrlS), func() {
 		stringShortcuts = SHORTCUTS_SERVICES
 		verifyContext()
 
@@ -53,7 +53,7 @@ var list = tview.NewList().
 
 		app.SetFocus(tableServices)
 	}).
-	AddItem("Nodes", "List all Nodes in context", 'n', func() {
+	AddItem("Nodes", "List all Nodes in context", rune(tcell.KeyCtrlN), func() {
 		stringShortcuts = SHORTCUTS_NODES
 		verifyContext()
 
@@ -64,7 +64,7 @@ var list = tview.NewList().
 
 		app.SetFocus(tableNodes)
 	}).
-	AddItem("Deployments", "List all Deployments in context", 'e', func() {
+	AddItem("Deployments", "List all Deployments in context", rune(tcell.KeyCtrlE), func() {
 		stringShortcuts = SHORTCUTS_DEPLOYMENTS
 		verifyContext()
 
@@ -75,7 +75,7 @@ var list = tview.NewList().
 
 		app.SetFocus(tableDeployments)
 	}).
-	AddItem("Filter", "Filter a list of Pod's/Services", 'f', func() {
+	AddItem("Filter", "Filter a list of Pod's/Services", rune(tcell.KeyCtrlF), func() {
 		stringShortcuts = SHORTCUTS_FILTER
 		verifyContext()
 
@@ -86,17 +86,17 @@ var list = tview.NewList().
 
 		app.SetFocus(filterForm)
 	}).
-	AddItem("Maintenance", "Functions to POD maintenance", 'm', func() {
+	AddItem("Maintenance", "Functions to POD maintenance", rune(tcell.KeyCtrlM), func() {
 		pages.SwitchToPage("Teste C")
 	}).
-	AddItem("Help", "Informations", 'h', func() {
+	AddItem("Help", "Informations", rune(tcell.KeyCtrlH), func() {
 		stringShortcuts = ""
 		verifyContext()
 
 		pages.SetTitle("")
 		pages.SwitchToPage("Help")
 	}).
-	AddItem("Quit", "Press to exit", 'q', func() {
+	AddItem("Quit", "Press to exit", rune(tcell.KeyCtrlQ), func() {
 		app.Stop()
 	})
 
@@ -165,7 +165,7 @@ func setFilterForm() {
 
 func describePodShortcuts() {
 	describePod.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Rune() == 118 { //v
+		if event.Rune() == rune(tcell.KeyCtrlV) {
 			pages.SwitchToPage("TablesPods")
 
 			app.SetFocus(tablePods)

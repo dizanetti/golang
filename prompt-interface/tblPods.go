@@ -23,7 +23,7 @@ func createTablePods(commands ...string) {
 		}
 	}).SetBackgroundColor(tcell.ColorBlack).
 		SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-			if event.Rune() == 100 { // d
+			if event.Rune() == rune(tcell.KeyCtrlD) {
 				row, _ := tablePods.GetSelection()
 
 				podName := tablePods.GetCell(row, 1).Text
@@ -36,10 +36,10 @@ func createTablePods(commands ...string) {
 					tablePods.Clear()
 					configureTablePods(commands...)
 				}
-			} else if event.Rune() == 114 { // r
+			} else if event.Rune() == rune(tcell.KeyCtrlR) {
 				tablePods.Clear()
 				configureTablePods(commands...)
-			} else if event.Rune() == 105 { // i
+			} else if event.Rune() == rune(tcell.KeyCtrlI) {
 				row, _ := tablePods.GetSelection()
 
 				podName := tablePods.GetCell(row, 1).Text
