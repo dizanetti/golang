@@ -18,6 +18,8 @@ var informationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText
 
 var filterForm = tview.NewForm()
 
+var modalAppSettingsConfirm = tview.NewModal()
+
 var list = tview.NewList().
 	AddItem("Pod's", "List all Pod's in context", rune(tcell.KeyCtrlP), func() {
 		stringShortcuts = SHORTCUTS_PODS
@@ -89,6 +91,17 @@ var list = tview.NewList().
 	AddItem("Maintenance", "Functions to POD maintenance", rune(tcell.KeyCtrlM), func() {
 		pages.SwitchToPage("Teste C")
 	}).
+	AddItem("App Settings", "Settings", rune(tcell.KeyCtrlS), func() {
+		stringShortcuts = SHORTCUTS_SETTINGS
+		verifyContext()
+
+		setSettingsForm()
+
+		pages.SwitchToPage("AppSettingsForm")
+		pages.SetTitle("Settings")
+
+		app.SetFocus(settingsForm)
+	}).
 	AddItem("Help", "Informations", rune(tcell.KeyCtrlH), func() {
 		stringShortcuts = ""
 		verifyContext()
@@ -104,13 +117,18 @@ func setPages() {
 	list.SetBorder(true).SetTitle("Menu")
 
 	pages.AddPage("filterForm", filterForm, true, true).SetBorder(true)
+	pages.AddPage("AppSettingsForm", settingsForm, true, true).SetBorder(true)
+
 	pages.AddPage("Teste C", textC, true, true).SetBorder(true)
 	pages.AddPage("DescribePod", describePod, true, true).SetBorder(true)
+
 	pages.AddPage("TablesContext", tableContext, true, true).SetBorder(true)
 	pages.AddPage("TablesServices", tableServices, true, true).SetBorder(true)
 	pages.AddPage("TablesNodes", tableNodes, true, true).SetBorder(true)
 	pages.AddPage("TablesDeployments", tableDeployments, true, true).SetBorder(true)
 	pages.AddPage("TablesPods", tablePods, true, true).SetBorder(true)
+
+	pages.AddPage("ModalSettingsButtonOK", createModalSettingsButtonOK(), true, true)
 	pages.AddPage("Help", welcomeText, true, true).SetBorder(true)
 
 	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle("Information")

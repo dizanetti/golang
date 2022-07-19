@@ -1,11 +1,15 @@
 package main
 
 import (
+	"strconv"
+
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 )
 
 var app = tview.NewApplication()
+
+var settings AppSettings
 
 func main() {
 	initProg()
@@ -22,10 +26,14 @@ func main() {
 }
 
 func initProg() {
+	readSettingsFile()
+
 	configureShortcuts()
 	setPages()
 	verifyContext()
-	schedulerSeconds(2, verifyContext)
+
+	timeRefresh, _ := strconv.Atoi(settings.RefreshContextInformation)
+	schedulerSeconds(timeRefresh, verifyContext)
 }
 
 func configureShortcuts() {
@@ -38,4 +46,18 @@ func configureShortcuts() {
 
 		return event
 	})
+}
+
+func readSettingsFile() {
+	settingsFile, err := openJsonFile(SETTINGS_FILE)
+
+	if err != nil {
+		settings = AppSettings{RefreshContextInformation: "3", RefreshTablePods: "300"}
+
+		writeSettingsJsonFile(settings)
+	} else {
+		unmarshalJson(settingsFile, &settings)
+	}
+
+	defer settingsFile.Close()
 }
