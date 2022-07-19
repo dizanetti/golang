@@ -48,7 +48,7 @@ func setSettingsForm() {
 
 func createModalSettingsButtonOK() *tview.Modal {
 	modalAppSettingsConfirm = tview.NewModal().
-		SetText("Do you want to save the settings?").
+		SetText("Do you want to save the settings? \n \nYou need to restart the application.").
 		AddButtons([]string{"Confirm", "Cancel"}).
 		SetDoneFunc(func(buttonIndex int, buttonLabel string) {
 			if buttonLabel == "Confirm" {
