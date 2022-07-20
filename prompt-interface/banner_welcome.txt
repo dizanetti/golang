@@ -14,7 +14,5 @@
                                           -> (CTRL + V) Return to Table's Pod from describe
           -> (CTRL + Q) Quit
 
-Informartions
-* Every two seconds verify the context and refresh Area Information.
 
 Laguna Systems
