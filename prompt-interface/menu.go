@@ -77,6 +77,17 @@ var list = tview.NewList().
 
 		app.SetFocus(tableDeployments)
 	}).
+	AddItem("Persistent Volumes", "List all Persistent Volumes", rune(tcell.KeyCtrlP), func() {
+		stringShortcuts = SHORTCUTS_PERSISTENT_VOLUMES
+		verifyContext()
+
+		createTablePersistentVolumes(GET_PERSISTENT_VOLUMES + " " + GET_PERSISTENT_VOLUMES_ARGS)
+
+		pages.SwitchToPage("TablesPersistentVolumes")
+		pages.SetTitle("Persistent Volumes")
+
+		app.SetFocus(tablePersistentVolumes)
+	}).
 	AddItem("Filter", "Filter a list of Pod's/Services", rune(tcell.KeyCtrlF), func() {
 		stringShortcuts = SHORTCUTS_FILTER
 		verifyContext()
@@ -126,6 +137,7 @@ func setPages() {
 	pages.AddPage("TablesServices", tableServices, true, true).SetBorder(true)
 	pages.AddPage("TablesNodes", tableNodes, true, true).SetBorder(true)
 	pages.AddPage("TablesDeployments", tableDeployments, true, true).SetBorder(true)
+	pages.AddPage("TablesPersistentVolumes", tablePersistentVolumes, true, true).SetBorder(true)
 	pages.AddPage("TablesPods", tablePods, true, true).SetBorder(true)
 
 	pages.AddPage("ModalSettingsButtonOK", createModalSettingsButtonOK(), true, true)

@@ -25,7 +25,7 @@ func execute(commands ...string) ([]string, error) {
 	if argMatch != "" {
 		return execCmdWithMatchReturnSlice(argCmd, argMatch)
 	} else if argMatch != "" && argReject != "" {
-		execCmdWithMatchWithRejectReturnSlice(argCmd, argMatch, argReject)
+		return execCmdWithMatchWithRejectReturnSlice(argCmd, argMatch, argReject)
 	}
 
 	return execCmdReturnSlice(argCmd)
