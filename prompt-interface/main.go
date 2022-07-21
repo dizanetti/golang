@@ -52,7 +52,7 @@ func readSettingsFile() {
 	settingsFile, err := openJsonFile(SETTINGS_FILE)
 
 	if err != nil {
-		settings = AppSettings{RefreshContextInformation: "3", RefreshTablePods: "300"}
+		settings = AppSettings{RefreshContextInformation: "5", RefreshTablePods: "300", DefaultOutputFormatted: 0}
 
 		writeSettingsJsonFile(settings)
 	} else {

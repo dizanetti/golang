@@ -7,13 +7,15 @@ import (
 type AppSettings struct {
 	RefreshTablePods          string `json:"refresh_table_pods"`
 	RefreshContextInformation string `json:"refresh_context_information"`
+	DefaultOutputFormatted    int    `json:"default_output_formatted"`
 }
 
 var settingsForm = tview.NewForm()
 
 func setSettingsForm() {
-	var timeContextValue string
-	var timePodsValue string
+	var timeContextValue string = settings.RefreshContextInformation
+	var timePodsValue string = settings.RefreshTablePods
+	var defaultOutputFormatted int = settings.DefaultOutputFormatted
 
 	settingsForm.Clear(true)
 
@@ -25,17 +27,17 @@ func setSettingsForm() {
 		timePodsValue = timePods
 	})
 
+	settingsForm.AddDropDown("Default output formatted API object", []string{"YAML", "JSON"}, settings.DefaultOutputFormatted, func(option string, optionIndex int) {
+		defaultOutputFormatted = optionIndex
+	})
+
 	settingsForm.AddButton("Ok", func() {
+		settings.RefreshContextInformation = timeContextValue
+		settings.RefreshTablePods = timePodsValue
+		settings.DefaultOutputFormatted = defaultOutputFormatted
+
 		app.SetFocus(modalAppSettingsConfirm)
 		pages.SwitchToPage("ModalSettingsButtonOK")
-
-		if timeContextValue != "" {
-			settings.RefreshContextInformation = timeContextValue
-		}
-
-		if timePodsValue != "" {
-			settings.RefreshTablePods = timePodsValue
-		}
 	})
 
 	settingsForm.AddButton("Cancel", func() {
