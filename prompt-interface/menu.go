@@ -12,6 +12,7 @@ var pages = tview.NewPages()
 var textC = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText("Work in Progress...")
 var welcomeText = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetText(openTextFile(WELCOME_BANNER)).SetTextAlign(tview.AlignCenter)
 var describePod = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetScrollable(true)
+var loadConfiguration = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetScrollable(true)
 
 var infoPages = tview.NewPages()
 var informationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetTextAlign(tview.AlignCenter)
@@ -132,6 +133,7 @@ func setPages() {
 
 	pages.AddPage("Teste C", textC, true, true).SetBorder(true)
 	pages.AddPage("DescribePod", describePod, true, true).SetBorder(true)
+	pages.AddPage("LoadConfiguration", loadConfiguration, true, true).SetBorder(true)
 
 	pages.AddPage("TablesContext", tableContext, true, true).SetBorder(true)
 	pages.AddPage("TablesServices", tableServices, true, true).SetBorder(true)
@@ -146,6 +148,7 @@ func setPages() {
 	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle("Information")
 
 	describePodShortcuts()
+	loadConfigurationShortcuts()
 }
 
 func setFilterForm() {
@@ -195,8 +198,25 @@ func setFilterForm() {
 
 func describePodShortcuts() {
 	describePod.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Rune() == rune(tcell.KeyCtrlV) {
+		if event.Rune() == rune(tcell.KeyCtrlM) {
 			pages.SwitchToPage("TablesPods")
+
+			stringShortcuts = SHORTCUTS_PODS
+			verifyContext()
+
+			app.SetFocus(tablePods)
+		}
+		return event
+	})
+}
+
+func loadConfigurationShortcuts() {
+	loadConfiguration.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
+		if event.Rune() == rune(tcell.KeyCtrlX) {
+			pages.SwitchToPage("TablesPods")
+
+			stringShortcuts = SHORTCUTS_PODS
+			verifyContext()
 
 			app.SetFocus(tablePods)
 		}

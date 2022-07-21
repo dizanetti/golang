@@ -28,7 +28,6 @@ func configureTablePersistentVolumes(result []string, err error) {
 	tablePersistentVolumes.SetCell(0, 0, &tview.TableCell{Text: "NUMBER", Align: tview.AlignCenter, Color: headerColumnColor, Expansion: 2, BackgroundColor: tcell.ColorGray})
 	tablePersistentVolumes.SetCell(0, 1, &tview.TableCell{Text: "NAME", Align: tview.AlignCenter, Color: headerColumnColor, Expansion: 2, BackgroundColor: tcell.ColorGray})
 	tablePersistentVolumes.SetCell(0, 2, &tview.TableCell{Text: "CAPACITY", Align: tview.AlignCenter, Color: headerColumnColor, Expansion: 2, BackgroundColor: tcell.ColorGray})
-	//tablePersistentVolumes.SetCell(0, 3, &tview.TableCell{Text: "ACCESS_MODE", Align: tview.AlignCenter, Color: headerColumnColor, Expansion: 2, BackgroundColor: tcell.ColorGray})
 	tablePersistentVolumes.SetCell(0, 3, &tview.TableCell{Text: "STATUS", Align: tview.AlignCenter, Color: headerColumnColor, Expansion: 2, BackgroundColor: tcell.ColorGray})
 	tablePersistentVolumes.SetCell(0, 4, &tview.TableCell{Text: "NAMESPACE", Align: tview.AlignCenter, Color: headerColumnColor, Expansion: 2, BackgroundColor: tcell.ColorGray})
 	tablePersistentVolumes.SetCell(0, 5, &tview.TableCell{Text: "CLAIM", Align: tview.AlignCenter, Color: headerColumnColor, Expansion: 2, BackgroundColor: tcell.ColorGray})
