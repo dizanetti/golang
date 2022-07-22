@@ -12,7 +12,17 @@ var tableDeployments = tview.NewTable().SetBorders(true).SetFixed(1, 1).SetSelec
 
 func createTableDeployments(commands ...string) {
 	tableDeployments.Clear()
-	tableDeployments.SetBackgroundColor(tcell.ColorBlack)
+	tableDeployments.SetBackgroundColor(tcell.ColorBlack).SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
+		if event.Rune() == rune(tcell.KeyCtrlL) {
+			row, _ := tableDeployments.GetSelection()
+
+			podName := tableDeployments.GetCell(row, 1).Text
+
+			load(podName, "deployments", tableDeployments, "TablesDeployments")
+		}
+
+		return event
+	})
 
 	configureTabletableDeployments(execute(commands...))
 	tableDeployments.ScrollToBeginning()

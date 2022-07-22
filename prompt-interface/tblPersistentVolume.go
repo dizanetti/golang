@@ -12,7 +12,17 @@ var tablePersistentVolumes = tview.NewTable().SetBorders(true).SetFixed(1, 1).Se
 
 func createTablePersistentVolumes(commands ...string) {
 	tablePersistentVolumes.Clear()
-	tablePersistentVolumes.SetBackgroundColor(tcell.ColorBlack)
+	tablePersistentVolumes.SetBackgroundColor(tcell.ColorBlack).SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
+		if event.Rune() == rune(tcell.KeyCtrlL) {
+			row, _ := tablePersistentVolumes.GetSelection()
+
+			podName := tablePersistentVolumes.GetCell(row, 1).Text
+
+			load(podName, "pv", tablePersistentVolumes, "TablesPersistentVolumes")
+		}
+
+		return event
+	})
 
 	configureTablePersistentVolumes(execute(commands...))
 	tablePersistentVolumes.ScrollToBeginning()

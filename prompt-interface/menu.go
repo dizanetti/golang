@@ -148,7 +148,6 @@ func setPages() {
 	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle("Information")
 
 	describePodShortcuts()
-	loadConfigurationShortcuts()
 }
 
 func setFilterForm() {
@@ -199,20 +198,6 @@ func setFilterForm() {
 func describePodShortcuts() {
 	describePod.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		if event.Rune() == rune(tcell.KeyCtrlM) {
-			pages.SwitchToPage("TablesPods")
-
-			stringShortcuts = SHORTCUTS_PODS
-			verifyContext()
-
-			app.SetFocus(tablePods)
-		}
-		return event
-	})
-}
-
-func loadConfigurationShortcuts() {
-	loadConfiguration.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Rune() == rune(tcell.KeyCtrlX) {
 			pages.SwitchToPage("TablesPods")
 
 			stringShortcuts = SHORTCUTS_PODS

@@ -12,7 +12,17 @@ var tableNodes = tview.NewTable().SetBorders(true).SetFixed(1, 1).SetSelectable(
 
 func createTableNodes(commands ...string) {
 	tableNodes.Clear()
-	tableNodes.SetBackgroundColor(tcell.ColorBlack)
+	tableNodes.SetBackgroundColor(tcell.ColorBlack).SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
+		if event.Rune() == rune(tcell.KeyCtrlL) {
+			row, _ := tableNodes.GetSelection()
+
+			podName := tableNodes.GetCell(row, 1).Text
+
+			load(podName, "nodes", tableNodes, "TablesNodes")
+		}
+
+		return event
+	})
 
 	configureTabletableNodes(execute(commands...))
 	tableNodes.ScrollToBeginning()

@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/gdamore/tcell/v2"
@@ -64,27 +63,7 @@ func createTablePods(commands ...string) {
 
 				podName := tablePods.GetCell(row, 1).Text
 
-				var outputTypeLoad string
-				if settings.DefaultOutputFormatted == 0 {
-					outputTypeLoad = "yaml"
-				} else {
-					outputTypeLoad = "json"
-				}
-
-				load, errLoad := execute("kubectl get pod -o=" + outputTypeLoad + " " + podName)
-				if errLoad != nil {
-					informationText.SetText(errLoad.Error()).SetTextColor(tcell.ColorRed)
-				} else {
-					loadConfiguration.SetText(strings.Join(load, "\n"))
-
-					stringShortcuts = SHORTCUTS_LOAD_CONFIG
-					verifyContext()
-
-					pages.SwitchToPage("LoadConfiguration")
-					pages.SetTitle("Load Configuration")
-
-					app.SetFocus(loadConfiguration)
-				}
+				load(podName, "pod", tablePods, "TablesPods")
 			}
 
 			return event

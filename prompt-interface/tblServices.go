@@ -12,7 +12,17 @@ var tableServices = tview.NewTable().SetBorders(true).SetFixed(1, 1).SetSelectab
 
 func createTableServices(commands ...string) {
 	tableServices.Clear()
-	tableServices.SetBackgroundColor(tcell.ColorBlack)
+	tableServices.SetBackgroundColor(tcell.ColorBlack).SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
+		if event.Rune() == rune(tcell.KeyCtrlL) {
+			row, _ := tableServices.GetSelection()
+
+			podName := tableServices.GetCell(row, 1).Text
+
+			load(podName, "services", tableServices, "TablesServices")
+		}
+
+		return event
+	})
 
 	configureTableServices(execute(commands...))
 	tableServices.ScrollToBeginning()
