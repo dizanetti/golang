@@ -7,7 +7,7 @@ import (
 	"github.com/rivo/tview"
 )
 
-func load(podName string, typeOfService string, objFocusReturn tview.Primitive, pageInvoke string) {
+func load(podName string, typeOfService string, objFocusReturn tview.Primitive, pageInvoke string, shortcuts string) {
 	var outputTypeLoad string
 	if settings.DefaultOutputFormatted == 0 {
 		outputTypeLoad = "yaml"
@@ -29,7 +29,7 @@ func load(podName string, typeOfService string, objFocusReturn tview.Primitive, 
 
 		app.SetFocus(loadConfiguration)
 
-		loadConfigurationShortcuts(objFocusReturn, pageInvoke, SHORTCUTS_LOAD_CONFIG)
+		loadConfigurationShortcuts(objFocusReturn, pageInvoke, shortcuts)
 	}
 }
 

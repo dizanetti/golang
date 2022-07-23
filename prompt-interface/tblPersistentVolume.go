@@ -18,7 +18,7 @@ func createTablePersistentVolumes(commands ...string) {
 
 			podName := tablePersistentVolumes.GetCell(row, 1).Text
 
-			load(podName, "pv", tablePersistentVolumes, "TablesPersistentVolumes")
+			load(podName, "pv", tablePersistentVolumes, "TablesPersistentVolumes", SHORTCUTS_PERSISTENT_VOLUMES)
 		}
 
 		return event

@@ -89,6 +89,17 @@ var list = tview.NewList().
 
 		app.SetFocus(tablePersistentVolumes)
 	}).
+	AddItem("Config Maps", "List all Config Maps", rune(tcell.KeyCtrlG), func() {
+		stringShortcuts = SHORTCUTS_CONFIG_MAPS
+		verifyContext()
+
+		createTableConfigMaps(GET_CONFIG_MAPS)
+
+		pages.SwitchToPage("TablesConfigMaps")
+		pages.SetTitle("Config Maps")
+
+		app.SetFocus(tableConfigMaps)
+	}).
 	AddItem("Filter", "Filter a list of Pod's/Services", rune(tcell.KeyCtrlF), func() {
 		stringShortcuts = SHORTCUTS_FILTER
 		verifyContext()
@@ -139,6 +150,7 @@ func setPages() {
 	pages.AddPage("TablesServices", tableServices, true, true).SetBorder(true)
 	pages.AddPage("TablesNodes", tableNodes, true, true).SetBorder(true)
 	pages.AddPage("TablesDeployments", tableDeployments, true, true).SetBorder(true)
+	pages.AddPage("TablesConfigMaps", tableConfigMaps, true, true).SetBorder(true)
 	pages.AddPage("TablesPersistentVolumes", tablePersistentVolumes, true, true).SetBorder(true)
 	pages.AddPage("TablesPods", tablePods, true, true).SetBorder(true)
 
@@ -146,8 +158,6 @@ func setPages() {
 	pages.AddPage("Help", welcomeText, true, true).SetBorder(true)
 
 	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle("Information")
-
-	describePodShortcuts()
 }
 
 func setFilterForm() {
@@ -192,19 +202,5 @@ func setFilterForm() {
 		createTablePods(GET_PODS)
 		pages.SwitchToPage("TablesPods")
 		app.SetFocus(tablePods)
-	})
-}
-
-func describePodShortcuts() {
-	describePod.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Rune() == rune(tcell.KeyCtrlM) {
-			pages.SwitchToPage("TablesPods")
-
-			stringShortcuts = SHORTCUTS_PODS
-			verifyContext()
-
-			app.SetFocus(tablePods)
-		}
-		return event
 	})
 }

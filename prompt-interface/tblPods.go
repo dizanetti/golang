@@ -44,26 +44,18 @@ func createTablePods(commands ...string) {
 
 				podName := tablePods.GetCell(row, 1).Text
 
-				describe, errDescribe := executeKubectlCore("describe", "pod", podName)
+				describeResult, errDescribe := executeKubectlCore("describe", "pod", podName)
 				if errDescribe != "" {
 					informationText.SetText(errDescribe).SetTextColor(tcell.ColorRed)
 				} else {
-					describePod.SetText(describe)
-
-					stringShortcuts = SHORTCUTS_DESCRIBE
-					verifyContext()
-
-					pages.SwitchToPage("DescribePod")
-					pages.SetTitle("Describe")
-
-					app.SetFocus(describePod)
+					describe(describeResult, tablePods, "TablesPods", SHORTCUTS_PODS)
 				}
 			} else if event.Rune() == rune(tcell.KeyCtrlL) {
 				row, _ := tablePods.GetSelection()
 
 				podName := tablePods.GetCell(row, 1).Text
 
-				load(podName, "pod", tablePods, "TablesPods")
+				load(podName, "pod", tablePods, "TablesPods", SHORTCUTS_PODS)
 			}
 
 			return event

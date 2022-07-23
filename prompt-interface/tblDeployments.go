@@ -18,7 +18,7 @@ func createTableDeployments(commands ...string) {
 
 			podName := tableDeployments.GetCell(row, 1).Text
 
-			load(podName, "deployments", tableDeployments, "TablesDeployments")
+			load(podName, "deployments", tableDeployments, "TablesDeployments", SHORTCUTS_DEPLOYMENTS)
 		}
 
 		return event

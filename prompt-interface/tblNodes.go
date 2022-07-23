@@ -18,7 +18,7 @@ func createTableNodes(commands ...string) {
 
 			podName := tableNodes.GetCell(row, 1).Text
 
-			load(podName, "nodes", tableNodes, "TablesNodes")
+			load(podName, "nodes", tableNodes, "TablesNodes", SHORTCUTS_NODES)
 		}
 
 		return event
