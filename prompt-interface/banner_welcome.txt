@@ -1,3 +1,13 @@
+
+
+
+
+
+
+
+
+
+
  _                                          
 | |                                         
 | |        ____   ____  _   _  ____    ____ 
@@ -5,14 +15,5 @@
 | |_____ ( ( | |( ( | || |_| || | | |( ( | |
 |_______) \_||_| \_|| | \____||_| |_| \_||_|
                 (_____|                     
-
-    Shortcuts:
-                    -> (CTRL + Y) Return to Menu
-                           -> (CTRL + D) Delete a selected POD
-                            -> (CTRL + R) Refresh table of Pod's
-                     -> (CTRL + I) Describe a Pod
-                                          -> (CTRL + V) Return to Table's Pod from describe
-          -> (CTRL + Q) Quit
-
 
 Laguna Systems
