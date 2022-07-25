@@ -16,6 +16,7 @@ const SHORTCUTS_PODS string = " \n (ENTER) access| (CTRL+Y) return menu| (CTRL+D
 const SHORTCUTS_SERVICES string = " \n (CTRL+Y) return Menu| (CTRL+L) load"
 const SHORTCUTS_FILTER string = " \n (CTRL+Y) return Menu"
 const SHORTCUTS_SETTINGS string = " \n (CTRL+Y) return Menu"
+const SHORTCUTS_MAINTENANCE string = " \n (CTRL+Y) return Menu"
 const SHORTCUTS_NODES string = " \n (CTRL+Y) return Menu| (CTRL+L) load"
 const SHORTCUTS_DEPLOYMENTS string = " \n (CTRL+Y) return Menu| (CTRL+L) load"
 const SHORTCUTS_CONFIG_MAPS string = " \n (CTRL+Y) return Menu| (CTRL+L) load| (CTRL+I) describe"

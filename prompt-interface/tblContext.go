@@ -22,7 +22,7 @@ func createTableContext() {
 
 			_, _, err := execPowerShellContext(context)
 			if err != nil {
-				informationText.SetText(err.Error()).SetTextColor(tcell.ColorRed)
+				FooterinformationText.SetText(err.Error()).SetTextColor(tcell.ColorRed)
 			} else {
 				time.Sleep(2 * time.Second)
 				informationText.SetText(CURRENT_CONTEXT + context + "\n" + stringShortcuts).SetTextColor(tcell.ColorGreen)

@@ -26,7 +26,7 @@ func createTableConfigMaps(commands ...string) {
 
 			describeResult, errDescribe := executeKubectlCore("describe", "configmaps", podName)
 			if errDescribe != "" {
-				informationText.SetText(errDescribe).SetTextColor(tcell.ColorRed)
+				FooterinformationText.SetText(errDescribe).SetTextColor(tcell.ColorRed)
 			} else {
 				describe(describeResult, tableConfigMaps, "TablesConfigMaps", SHORTCUTS_CONFIG_MAPS)
 			}

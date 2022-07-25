@@ -17,7 +17,7 @@ func load(podName string, typeOfService string, objFocusReturn tview.Primitive, 
 
 	load, errLoad := execute("kubectl get " + typeOfService + " -o=" + outputTypeLoad + " " + podName)
 	if errLoad != nil {
-		informationText.SetText(errLoad.Error()).SetTextColor(tcell.ColorRed)
+		FooterinformationText.SetText(errLoad.Error()).SetTextColor(tcell.ColorRed)
 	} else {
 		loadConfiguration.SetText(strings.Join(load, "\n"))
 

@@ -8,6 +8,7 @@ import (
 var stringShortcuts string = ""
 
 var pages = tview.NewPages()
+var pagesMenu = tview.NewPages()
 
 var textC = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetText("Work in Progress...")
 var welcomeText = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetText(openTextFile(WELCOME_BANNER)).SetTextAlign(tview.AlignCenter)
@@ -17,11 +18,14 @@ var loadConfiguration = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetS
 var infoPages = tview.NewPages()
 var informationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetTextAlign(tview.AlignCenter)
 
+var FooterPages = tview.NewPages()
+var FooterinformationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetTextAlign(tview.AlignCenter)
+
 var filterForm = tview.NewForm()
 
 var modalAppSettingsConfirm = tview.NewModal()
 
-var list = tview.NewList().
+var listMenu = tview.NewList().
 	AddItem("Pod's", "List all Pod's in context", rune(tcell.KeyCtrlP), func() {
 		stringShortcuts = SHORTCUTS_PODS
 		verifyContext()
@@ -112,7 +116,13 @@ var list = tview.NewList().
 		app.SetFocus(filterForm)
 	}).
 	AddItem("Maintenance", "Functions to POD maintenance", rune(tcell.KeyCtrlM), func() {
-		pages.SwitchToPage("Teste C")
+		stringShortcuts = SHORTCUTS_MAINTENANCE
+		verifyContext()
+
+		pagesMenu.SwitchToPage("Maintenance")
+		pagesMenu.SetTitle("Maintenance")
+
+		app.SetFocus(listMaintenance)
 	}).
 	AddItem("App Settings", "Settings", rune(tcell.KeyCtrlS), func() {
 		stringShortcuts = SHORTCUTS_SETTINGS
@@ -136,8 +146,17 @@ var list = tview.NewList().
 		app.Stop()
 	})
 
+var listMaintenance = tview.NewList().
+	AddItem("Logs", "Logs of Pod's", rune(tcell.KeyCtrlL), func() {
+		pages.SwitchToPage("Teste C")
+	})
+
 func setPages() {
-	list.SetBorder(true).SetTitle("Menu")
+	pagesMenu.AddPage("Maintenance", listMaintenance, true, true)
+	pagesMenu.AddPage("Menu", listMenu, true, true)
+
+	listMenu.SetBorder(true).SetTitle("Menu")
+	listMaintenance.SetBorder(true).SetTitle("Maintenance")
 
 	pages.AddPage("filterForm", filterForm, true, true).SetBorder(true)
 	pages.AddPage("AppSettingsForm", settingsForm, true, true).SetBorder(true)
@@ -157,7 +176,9 @@ func setPages() {
 	pages.AddPage("ModalSettingsButtonOK", createModalSettingsButtonOK(), true, true)
 	pages.AddPage("Help", welcomeText, true, true).SetBorder(true)
 
-	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle("Information")
+	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle("Context")
+
+	FooterPages.AddPage("FooterinformationText", FooterinformationText, true, true).SetBorder(true).SetTitle("Information")
 }
 
 func setFilterForm() {

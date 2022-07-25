@@ -19,7 +19,7 @@ func createTablePods(commands ...string) {
 
 		_, _, err := execPowerShell(podName)
 		if err != nil {
-			informationText.SetText(err.Error()).SetTextColor(tcell.ColorRed)
+			FooterinformationText.SetText(err.Error()).SetTextColor(tcell.ColorRed)
 		}
 	}).SetBackgroundColor(tcell.ColorBlack).
 		SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
@@ -29,7 +29,7 @@ func createTablePods(commands ...string) {
 				podName := tablePods.GetCell(row, 1).Text
 				_, _, err := execPowerShellDelete(podName)
 				if err != nil {
-					informationText.SetText(err.Error()).SetTextColor(tcell.ColorRed)
+					FooterinformationText.SetText(err.Error()).SetTextColor(tcell.ColorRed)
 				} else {
 					time.Sleep(2 * time.Second)
 
@@ -46,7 +46,7 @@ func createTablePods(commands ...string) {
 
 				describeResult, errDescribe := executeKubectlCore("describe", "pod", podName)
 				if errDescribe != "" {
-					informationText.SetText(errDescribe).SetTextColor(tcell.ColorRed)
+					FooterinformationText.SetText(errDescribe).SetTextColor(tcell.ColorRed)
 				} else {
 					describe(describeResult, tablePods, "TablesPods", SHORTCUTS_PODS)
 				}
