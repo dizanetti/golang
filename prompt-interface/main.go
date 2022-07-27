@@ -28,6 +28,7 @@ func main() {
 
 func initProg() {
 	readSettingsFile()
+	createFolder(LOG_FOLDER)
 
 	configureShortcuts()
 	setPages()
@@ -43,6 +44,10 @@ func configureShortcuts() {
 			pagesMenu.SwitchToPage("Menu")
 
 			app.SetFocus(listMenu)
+		} else if event.Rune() == rune(tcell.KeyCtrlU) {
+			pagesMenu.SwitchToPage("Maintenance")
+
+			app.SetFocus(listMaintenance)
 		} else if event.Rune() == rune(tcell.KeyCtrlQ) {
 			app.Stop()
 		}

@@ -1,8 +1,11 @@
 package main
 
 import (
+	"strings"
+
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
+	"golang.org/x/exp/slices"
 )
 
 var stringShortcuts string = ""
@@ -19,9 +22,10 @@ var infoPages = tview.NewPages()
 var informationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetTextAlign(tview.AlignCenter)
 
 var FooterPages = tview.NewPages()
-var FooterinformationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetTextAlign(tview.AlignCenter)
+var FooterinformationText = tview.NewTextView().SetTextColor(tcell.ColorRed).SetTextAlign(tview.AlignCenter)
 
 var filterForm = tview.NewForm()
+var copyLogsFromPodForm = tview.NewForm()
 
 var modalAppSettingsConfirm = tview.NewModal()
 
@@ -147,8 +151,16 @@ var listMenu = tview.NewList().
 	})
 
 var listMaintenance = tview.NewList().
-	AddItem("Logs", "Logs of Pod's", rune(tcell.KeyCtrlL), func() {
-		pages.SwitchToPage("Teste C")
+	AddItem("Logs", "Copy Logs from Pod's to local", rune(tcell.KeyCtrlL), func() {
+		stringShortcuts = SHORTCUTS_COPY_LOGS
+		verifyContext()
+
+		setCopyLogsFromPodForm()
+
+		pages.SwitchToPage("CopyLogsFromPodForm")
+		pages.SetTitle("Copy Log's")
+
+		app.SetFocus(copyLogsFromPodForm)
 	})
 
 func setPages() {
@@ -159,6 +171,8 @@ func setPages() {
 	listMaintenance.SetBorder(true).SetTitle("Maintenance")
 
 	pages.AddPage("filterForm", filterForm, true, true).SetBorder(true)
+	pages.AddPage("CopyLogsFromPodForm", copyLogsFromPodForm, true, true).SetBorder(true)
+
 	pages.AddPage("AppSettingsForm", settingsForm, true, true).SetBorder(true)
 
 	pages.AddPage("Teste C", textC, true, true).SetBorder(true)
@@ -179,6 +193,47 @@ func setPages() {
 	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle("Context")
 
 	FooterPages.AddPage("FooterinformationText", FooterinformationText, true, true).SetBorder(true).SetTitle("Information")
+}
+
+func setCopyLogsFromPodForm() {
+	var podName string
+
+	copyLogsFromPodForm.Clear(true)
+
+	result, err := execCmcReturnSliceAndColumn(GET_PODS, 1)
+	if err != nil {
+		FooterinformationText.SetText(err.Error())
+	} else {
+		result = slices.Delete(result, 0, 1)
+
+		copyLogsFromPodForm.AddDropDown("Select Pod", result, 0, func(option string, optionIndex int) {
+			podName = option
+		})
+	}
+
+	copyLogsFromPodForm.AddButton("Copy", func() {
+		folder := LOG_FOLDER + "/" + podName
+
+		errRemoveFolder := removeFolder(folder)
+		if errRemoveFolder == nil {
+			errFolder := createFolder(folder)
+
+			if errFolder != nil {
+				FooterinformationText.SetText(errFolder.Error())
+			} else {
+				pathPod := strings.Replace(settings.LogFolder, "{POD_NAME}", podName, -1)
+
+				_, err1, err2 := execPowerShellCopyFiles(podName, folder, pathPod)
+				if err2 != nil {
+					FooterinformationText.SetText(err1 + " | " + err2.Error())
+				}
+			}
+		}
+	})
+
+	copyLogsFromPodForm.AddButton("Cancel", func() {
+	})
+
 }
 
 func setFilterForm() {

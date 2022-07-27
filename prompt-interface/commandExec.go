@@ -55,6 +55,10 @@ func execCmdWithMatchWithRejectReturnSlice(command string, match string, reject 
 	return execCmdWithMatchWithReject(command, match, reject).Slice()
 }
 
+func execCmcReturnSliceAndColumn(command string, columnNumber int) ([]string, error) {
+	return execCmd(command).Column(columnNumber).Slice()
+}
+
 func executeKubectlCore(commands ...string) (stdOut string, stdErr string) {
 	kubectl, _ := exec.LookPath("kubectl")
 

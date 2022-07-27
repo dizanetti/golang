@@ -84,3 +84,20 @@ func execPowerShellDelete(podName string) (stdOut string, stdErr string, err err
 
 	return posh.runCmd(processCmds)
 }
+
+func execPowerShellCopyFiles(podName string, pathLog string, pathPod string) (stdOut string, stdErr string, err error) {
+	posh := New()
+	kubectl, _ := exec.LookPath("kubectl")
+	arguments := "cp " + podName + ":" + pathPod + " " + pathLog
+
+	processCmds := `
+	$newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
+	$newProcess.Arguments = "` + arguments + `";
+	$newProcess.FileName = "` + kubectl + `";
+	$newProcess.CreateNoWindow = "false";
+	$process = [System.Diagnostics.Process]::Start($newProcess);
+	exit	
+	`
+
+	return posh.runCmd(processCmds)
+}

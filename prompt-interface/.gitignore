@@ -7,4 +7,8 @@
 # Cache file
 .dccache
 
+# Config File
 settings.json
+
+# Logs
+logs/

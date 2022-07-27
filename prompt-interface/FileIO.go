@@ -27,3 +27,26 @@ func writeSettingsJsonFile(settings AppSettings) {
 	pretty, _ := json.MarshalIndent(settings, "", " ")
 	ioutil.WriteFile(SETTINGS_FILE, pretty, 0644)
 }
+
+func createFolder(folder string) error {
+	var err error
+
+	_, errExists := os.Stat(folder)
+	if os.IsNotExist(errExists) {
+		err = os.Mkdir(folder, 0777)
+		if err != nil {
+			FooterinformationText.SetText(err.Error())
+		}
+	}
+
+	return err
+}
+
+func removeFolder(folder string) error {
+	err := os.RemoveAll(folder)
+	if err != nil {
+		FooterinformationText.SetText(err.Error())
+	}
+
+	return err
+}
