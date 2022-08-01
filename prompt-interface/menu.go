@@ -233,7 +233,6 @@ func setCopyLogsFromPodForm() {
 
 	copyLogsFromPodForm.AddButton("Cancel", func() {
 	})
-
 }
 
 func setFilterForm() {
@@ -245,12 +244,12 @@ func setFilterForm() {
 		valueName = name
 	})
 
-	filterForm.AddDropDown("Type", []string{"Pod", "Service"}, 0, func(option string, optionIndex int) {
+	filterForm.AddDropDown("Type", []string{"Pod", "Service", "Deployments", "ConfigMaps"}, 0, func(option string, optionIndex int) {
 		valueType = optionIndex
 	})
 
 	filterForm.AddButton("Find", func() {
-		if valueType == 0 {
+		if valueType == 0 { //Pod
 			stringShortcuts = SHORTCUTS_PODS
 			verifyContext()
 
@@ -260,7 +259,7 @@ func setFilterForm() {
 			pages.SetTitle("Pod's")
 
 			app.SetFocus(tablePods)
-		} else if valueType == 1 {
+		} else if valueType == 1 { //Service
 			stringShortcuts = SHORTCUTS_CONTEXT
 			verifyContext()
 
@@ -270,6 +269,26 @@ func setFilterForm() {
 			pages.SetTitle("Services")
 
 			app.SetFocus(tableServices)
+		} else if valueType == 2 { //Deployments
+			stringShortcuts = SHORTCUTS_DEPLOYMENTS
+			verifyContext()
+
+			createTableDeployments(GET_DEPLOYMENTS, valueName)
+
+			pages.SwitchToPage("TablesDeployments")
+			pages.SetTitle("Deployments")
+
+			app.SetFocus(tableDeployments)
+		} else if valueType == 3 { //ConfigMaps
+			stringShortcuts = SHORTCUTS_CONFIG_MAPS
+			verifyContext()
+
+			createTableConfigMaps(GET_CONFIG_MAPS, valueName)
+
+			pages.SwitchToPage("TablesConfigMaps")
+			pages.SetTitle("Config Maps")
+
+			app.SetFocus(tableConfigMaps)
 		}
 	})
 
