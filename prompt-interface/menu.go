@@ -30,6 +30,17 @@ var copyLogsFromPodForm = tview.NewForm()
 var modalAppSettingsConfirm = tview.NewModal()
 
 var listMenu = tview.NewList().
+	AddItem("Filter", "Filter a list of Pod's/Services", rune(tcell.KeyCtrlF), func() {
+		stringShortcuts = SHORTCUTS_FILTER
+		verifyContext()
+
+		setFilterForm()
+
+		pages.SwitchToPage("filterForm")
+		pages.SetTitle("Filter")
+
+		app.SetFocus(filterForm)
+	}).
 	AddItem("Pod's", "List all Pod's in context", rune(tcell.KeyCtrlP), func() {
 		stringShortcuts = SHORTCUTS_PODS
 		verifyContext()
@@ -107,17 +118,6 @@ var listMenu = tview.NewList().
 		pages.SetTitle("Config Maps")
 
 		app.SetFocus(tableConfigMaps)
-	}).
-	AddItem("Filter", "Filter a list of Pod's/Services", rune(tcell.KeyCtrlF), func() {
-		stringShortcuts = SHORTCUTS_FILTER
-		verifyContext()
-
-		setFilterForm()
-
-		pages.SwitchToPage("filterForm")
-		pages.SetTitle("Filter")
-
-		app.SetFocus(filterForm)
 	}).
 	AddItem("Maintenance", "Functions to POD maintenance", rune(tcell.KeyCtrlM), func() {
 		stringShortcuts = SHORTCUTS_MAINTENANCE
