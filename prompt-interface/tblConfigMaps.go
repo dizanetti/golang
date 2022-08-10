@@ -18,7 +18,7 @@ func createTableConfigMaps(commands ...string) {
 
 			podName := tableConfigMaps.GetCell(row, 1).Text
 
-			load(podName, "configmap", tableConfigMaps, "TablesConfigMaps", SHORTCUTS_CONFIG_MAPS)
+			load(podName, "configmap", tableConfigMaps, FORM_CONFIG_MAPS, SHORTCUTS_CONFIG_MAPS, TITLE_CONFIG_MAPS)
 		} else if event.Rune() == rune(tcell.KeyCtrlI) {
 			row, _ := tableConfigMaps.GetSelection()
 
@@ -28,7 +28,7 @@ func createTableConfigMaps(commands ...string) {
 			if errDescribe != "" {
 				FooterinformationText.SetText(errDescribe).SetTextColor(tcell.ColorRed)
 			} else {
-				describe(describeResult, tableConfigMaps, "TablesConfigMaps", SHORTCUTS_CONFIG_MAPS)
+				describe(describeResult, tableConfigMaps, FORM_CONFIG_MAPS, SHORTCUTS_CONFIG_MAPS, TITLE_CONFIG_MAPS)
 			}
 		}
 

@@ -48,14 +48,14 @@ func createTablePods(commands ...string) {
 				if errDescribe != "" {
 					FooterinformationText.SetText(errDescribe).SetTextColor(tcell.ColorRed)
 				} else {
-					describe(describeResult, tablePods, "TablesPods", SHORTCUTS_PODS)
+					describe(describeResult, tablePods, FORM_POD, SHORTCUTS_PODS, TITLE_POD)
 				}
 			} else if event.Rune() == rune(tcell.KeyCtrlL) {
 				row, _ := tablePods.GetSelection()
 
 				podName := tablePods.GetCell(row, 1).Text
 
-				load(podName, "pod", tablePods, "TablesPods", SHORTCUTS_PODS)
+				load(podName, "pod", tablePods, FORM_POD, SHORTCUTS_PODS, TITLE_POD)
 			}
 
 			return event

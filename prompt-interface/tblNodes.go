@@ -18,7 +18,18 @@ func createTableNodes(commands ...string) {
 
 			podName := tableNodes.GetCell(row, 1).Text
 
-			load(podName, "nodes", tableNodes, "TablesNodes", SHORTCUTS_NODES)
+			load(podName, "nodes", tableNodes, FORM_NODES, SHORTCUTS_NODES, TITLE_NODES)
+		} else if event.Rune() == rune(tcell.KeyCtrlI) {
+			row, _ := tableNodes.GetSelection()
+
+			nodeName := tableNodes.GetCell(row, 1).Text
+
+			describeResult, errDescribe := executeKubectlCore("describe", "nodes", nodeName)
+			if errDescribe != "" {
+				FooterinformationText.SetText(errDescribe).SetTextColor(tcell.ColorRed)
+			} else {
+				describe(describeResult, tableNodes, FORM_NODES, SHORTCUTS_DESCRIBE, TITLE_NODES)
+			}
 		}
 
 		return event

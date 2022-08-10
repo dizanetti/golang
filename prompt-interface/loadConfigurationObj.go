@@ -7,7 +7,7 @@ import (
 	"github.com/rivo/tview"
 )
 
-func load(podName string, typeOfService string, objFocusReturn tview.Primitive, pageInvoke string, shortcuts string) {
+func load(podName string, typeOfService string, objFocusReturn tview.Primitive, pageInvoke string, shortcuts string, titlePageInvoke string) {
 	var outputTypeLoad string
 	if settings.DefaultOutputFormatted == 0 {
 		outputTypeLoad = "yaml"
@@ -29,14 +29,15 @@ func load(podName string, typeOfService string, objFocusReturn tview.Primitive, 
 
 		app.SetFocus(loadConfiguration)
 
-		loadConfigurationShortcuts(objFocusReturn, pageInvoke, shortcuts)
+		loadConfigurationShortcuts(objFocusReturn, pageInvoke, shortcuts, titlePageInvoke)
 	}
 }
 
-func loadConfigurationShortcuts(objFocusReturn tview.Primitive, switchToPage string, shortcuts string) {
+func loadConfigurationShortcuts(objFocusReturn tview.Primitive, switchToPage string, shortcuts string, titlePageInvoke string) {
 	loadConfiguration.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		if event.Rune() == rune(tcell.KeyCtrlX) {
 			pages.SwitchToPage(switchToPage)
+			pages.SetTitle(titlePageInvoke)
 
 			stringShortcuts = shortcuts
 			verifyContext()

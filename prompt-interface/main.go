@@ -45,7 +45,7 @@ func configureShortcuts() {
 
 			app.SetFocus(listMenu)
 		} else if event.Rune() == rune(tcell.KeyCtrlU) {
-			pagesMenu.SwitchToPage("Maintenance")
+			pagesMenu.SwitchToPage(FOMR_MAINTENANCE)
 
 			app.SetFocus(listMaintenance)
 		} else if event.Rune() == rune(tcell.KeyCtrlQ) {

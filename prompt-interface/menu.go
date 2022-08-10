@@ -36,8 +36,8 @@ var listMenu = tview.NewList().
 
 		setFilterForm()
 
-		pages.SwitchToPage("filterForm")
-		pages.SetTitle("Filter")
+		pages.SwitchToPage(FORM_FILTER)
+		pages.SetTitle(TITLE_FILTER)
 
 		app.SetFocus(filterForm)
 	}).
@@ -48,8 +48,8 @@ var listMenu = tview.NewList().
 		createTablePods(GET_PODS)
 		tablePods.ScrollToBeginning()
 
-		pages.SwitchToPage("TablesPods")
-		pages.SetTitle("Pod's")
+		pages.SwitchToPage(FORM_POD)
+		pages.SetTitle(TITLE_POD)
 
 		app.SetFocus(tablePods)
 	}).
@@ -59,8 +59,8 @@ var listMenu = tview.NewList().
 
 		createTableContext()
 
-		pages.SwitchToPage("TablesContext")
-		pages.SetTitle("Context")
+		pages.SwitchToPage(FORM_CONTEXT)
+		pages.SetTitle(TITLE_CONTEXT)
 
 		app.SetFocus(tableContext)
 	}).
@@ -70,8 +70,8 @@ var listMenu = tview.NewList().
 
 		createTableServices(GET_SERVICES)
 
-		pages.SwitchToPage("TablesServices")
-		pages.SetTitle("Services")
+		pages.SwitchToPage(FORM_SERVICES)
+		pages.SetTitle(TITLE_SERVICE)
 
 		app.SetFocus(tableServices)
 	}).
@@ -81,8 +81,8 @@ var listMenu = tview.NewList().
 
 		createTableNodes(GET_NODES)
 
-		pages.SwitchToPage("TablesNodes")
-		pages.SetTitle("Nodes")
+		pages.SwitchToPage(FORM_NODES)
+		pages.SetTitle(TITLE_NODES)
 
 		app.SetFocus(tableNodes)
 	}).
@@ -92,8 +92,8 @@ var listMenu = tview.NewList().
 
 		createTableDeployments(GET_DEPLOYMENTS)
 
-		pages.SwitchToPage("TablesDeployments")
-		pages.SetTitle("Deployments")
+		pages.SwitchToPage(FORM_DEPLOYMENTS)
+		pages.SetTitle(TITLE_DEPLOYMENTS)
 
 		app.SetFocus(tableDeployments)
 	}).
@@ -103,8 +103,8 @@ var listMenu = tview.NewList().
 
 		createTablePersistentVolumes(GET_PERSISTENT_VOLUMES + " " + GET_PERSISTENT_VOLUMES_ARGS)
 
-		pages.SwitchToPage("TablesPersistentVolumes")
-		pages.SetTitle("Persistent Volumes")
+		pages.SwitchToPage(FORM_PERSISTENT_VOLUMES)
+		pages.SetTitle(TITLE_PERSISTENT_VOLUMES)
 
 		app.SetFocus(tablePersistentVolumes)
 	}).
@@ -114,8 +114,8 @@ var listMenu = tview.NewList().
 
 		createTableConfigMaps(GET_CONFIG_MAPS)
 
-		pages.SwitchToPage("TablesConfigMaps")
-		pages.SetTitle("Config Maps")
+		pages.SwitchToPage(FORM_CONFIG_MAPS)
+		pages.SetTitle(TITLE_CONFIG_MAPS)
 
 		app.SetFocus(tableConfigMaps)
 	}).
@@ -123,8 +123,8 @@ var listMenu = tview.NewList().
 		stringShortcuts = SHORTCUTS_MAINTENANCE
 		verifyContext()
 
-		pagesMenu.SwitchToPage("Maintenance")
-		pagesMenu.SetTitle("Maintenance")
+		pagesMenu.SwitchToPage(FOMR_MAINTENANCE)
+		pagesMenu.SetTitle(TITLE_MAINTENANCE)
 
 		app.SetFocus(listMaintenance)
 	}).
@@ -134,8 +134,8 @@ var listMenu = tview.NewList().
 
 		setSettingsForm()
 
-		pages.SwitchToPage("AppSettingsForm")
-		pages.SetTitle("Settings")
+		pages.SwitchToPage(FORM_APP_SETTINGS)
+		pages.SetTitle(TITLE_APP_SETTINGS)
 
 		app.SetFocus(settingsForm)
 	}).
@@ -164,33 +164,33 @@ var listMaintenance = tview.NewList().
 	})
 
 func setPages() {
-	pagesMenu.AddPage("Maintenance", listMaintenance, true, true)
+	pagesMenu.AddPage(FOMR_MAINTENANCE, listMaintenance, true, true)
 	pagesMenu.AddPage("Menu", listMenu, true, true)
 
 	listMenu.SetBorder(true).SetTitle("Menu")
-	listMaintenance.SetBorder(true).SetTitle("Maintenance")
+	listMaintenance.SetBorder(true).SetTitle(TITLE_MAINTENANCE)
 
-	pages.AddPage("filterForm", filterForm, true, true).SetBorder(true)
+	pages.AddPage(FORM_FILTER, filterForm, true, true).SetBorder(true)
 	pages.AddPage("CopyLogsFromPodForm", copyLogsFromPodForm, true, true).SetBorder(true)
 
-	pages.AddPage("AppSettingsForm", settingsForm, true, true).SetBorder(true)
+	pages.AddPage(FORM_APP_SETTINGS, settingsForm, true, true).SetBorder(true)
 
 	pages.AddPage("Teste C", textC, true, true).SetBorder(true)
 	pages.AddPage("DescribePod", describePod, true, true).SetBorder(true)
 	pages.AddPage("LoadConfiguration", loadConfiguration, true, true).SetBorder(true)
 
-	pages.AddPage("TablesContext", tableContext, true, true).SetBorder(true)
-	pages.AddPage("TablesServices", tableServices, true, true).SetBorder(true)
-	pages.AddPage("TablesNodes", tableNodes, true, true).SetBorder(true)
-	pages.AddPage("TablesDeployments", tableDeployments, true, true).SetBorder(true)
-	pages.AddPage("TablesConfigMaps", tableConfigMaps, true, true).SetBorder(true)
-	pages.AddPage("TablesPersistentVolumes", tablePersistentVolumes, true, true).SetBorder(true)
-	pages.AddPage("TablesPods", tablePods, true, true).SetBorder(true)
+	pages.AddPage(FORM_CONTEXT, tableContext, true, true).SetBorder(true)
+	pages.AddPage(FORM_SERVICES, tableServices, true, true).SetBorder(true)
+	pages.AddPage(FORM_NODES, tableNodes, true, true).SetBorder(true)
+	pages.AddPage(FORM_DEPLOYMENTS, tableDeployments, true, true).SetBorder(true)
+	pages.AddPage(FORM_CONFIG_MAPS, tableConfigMaps, true, true).SetBorder(true)
+	pages.AddPage(FORM_PERSISTENT_VOLUMES, tablePersistentVolumes, true, true).SetBorder(true)
+	pages.AddPage(FORM_POD, tablePods, true, true).SetBorder(true)
 
 	pages.AddPage("ModalSettingsButtonOK", createModalSettingsButtonOK(), true, true)
 	pages.AddPage("Help", welcomeText, true, true).SetBorder(true)
 
-	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle("Context")
+	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle(TITLE_CONTEXT)
 
 	FooterPages.AddPage("FooterinformationText", FooterinformationText, true, true).SetBorder(true).SetTitle("Information")
 }
@@ -255,8 +255,8 @@ func setFilterForm() {
 
 			createTablePods(GET_PODS, valueName)
 
-			pages.SwitchToPage("TablesPods")
-			pages.SetTitle("Pod's")
+			pages.SwitchToPage(FORM_POD)
+			pages.SetTitle(TITLE_POD)
 
 			app.SetFocus(tablePods)
 		} else if valueType == 1 { //Service
@@ -265,8 +265,8 @@ func setFilterForm() {
 
 			createTableServices(GET_SERVICES, valueName)
 
-			pages.SwitchToPage("TablesServices")
-			pages.SetTitle("Services")
+			pages.SwitchToPage(FORM_SERVICES)
+			pages.SetTitle(TITLE_SERVICE)
 
 			app.SetFocus(tableServices)
 		} else if valueType == 2 { //Deployments
@@ -275,8 +275,8 @@ func setFilterForm() {
 
 			createTableDeployments(GET_DEPLOYMENTS, valueName)
 
-			pages.SwitchToPage("TablesDeployments")
-			pages.SetTitle("Deployments")
+			pages.SwitchToPage(FORM_DEPLOYMENTS)
+			pages.SetTitle(TITLE_DEPLOYMENTS)
 
 			app.SetFocus(tableDeployments)
 		} else if valueType == 3 { //ConfigMaps
@@ -285,8 +285,8 @@ func setFilterForm() {
 
 			createTableConfigMaps(GET_CONFIG_MAPS, valueName)
 
-			pages.SwitchToPage("TablesConfigMaps")
-			pages.SetTitle("Config Maps")
+			pages.SwitchToPage(FORM_CONFIG_MAPS)
+			pages.SetTitle(TITLE_CONFIG_MAPS)
 
 			app.SetFocus(tableConfigMaps)
 		}
@@ -295,7 +295,7 @@ func setFilterForm() {
 	filterForm.AddButton("Cancel", func() {
 
 		createTablePods(GET_PODS)
-		pages.SwitchToPage("TablesPods")
+		pages.SwitchToPage(FORM_POD)
 		app.SetFocus(tablePods)
 	})
 }

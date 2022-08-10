@@ -5,7 +5,7 @@ import (
 	"github.com/rivo/tview"
 )
 
-func describe(describe string, objFocusReturn tview.Primitive, pageInvoke string, shortcuts string) {
+func describe(describe string, objFocusReturn tview.Primitive, pageInvoke string, shortcuts string, titlePageInvoke string) {
 	describePod.SetText(describe)
 
 	stringShortcuts = SHORTCUTS_DESCRIBE
@@ -16,14 +16,15 @@ func describe(describe string, objFocusReturn tview.Primitive, pageInvoke string
 
 	app.SetFocus(describePod)
 
-	describePodShortcuts(objFocusReturn, pageInvoke, shortcuts)
+	describePodShortcuts(objFocusReturn, pageInvoke, shortcuts, titlePageInvoke)
 
 }
 
-func describePodShortcuts(objFocusReturn tview.Primitive, switchToPage string, shortcuts string) {
+func describePodShortcuts(objFocusReturn tview.Primitive, switchToPage string, shortcuts string, titlePageInvoke string) {
 	describePod.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		if event.Rune() == rune(tcell.KeyCtrlM) {
 			pages.SwitchToPage(switchToPage)
+			pages.SetTitle(titlePageInvoke)
 
 			stringShortcuts = shortcuts
 			verifyContext()

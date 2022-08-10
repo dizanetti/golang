@@ -18,7 +18,7 @@ func createTableServices(commands ...string) {
 
 			podName := tableServices.GetCell(row, 1).Text
 
-			load(podName, "services", tableServices, "TablesServices", SHORTCUTS_SERVICES)
+			load(podName, "services", tableServices, FORM_SERVICES, SHORTCUTS_SERVICES, TITLE_SERVICE)
 		}
 
 		return event

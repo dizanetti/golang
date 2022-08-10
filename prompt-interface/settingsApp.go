@@ -62,17 +62,11 @@ func createModalSettingsButtonOK() *tview.Modal {
 		SetDoneFunc(func(buttonIndex int, buttonLabel string) {
 			if buttonLabel == "Confirm" {
 				writeSettingsJsonFile(settings)
-
-				pages.SwitchToPage("AppSettingsForm")
-				pages.SetTitle("Settings")
-
-				app.SetFocus(settingsForm)
-			} else {
-				pages.SwitchToPage("AppSettingsForm")
-				pages.SetTitle("Settings")
-
-				app.SetFocus(settingsForm)
 			}
+			pages.SwitchToPage(FORM_APP_SETTINGS)
+			pages.SetTitle(TITLE_APP_SETTINGS)
+
+			app.SetFocus(settingsForm)
 		})
 
 	return modalAppSettingsConfirm
