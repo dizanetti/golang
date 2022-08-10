@@ -144,7 +144,7 @@ var listMenu = tview.NewList().
 		verifyContext()
 
 		pages.SetTitle("")
-		pages.SwitchToPage("Help")
+		pages.SwitchToPage(FORM_HELP)
 	}).
 	AddItem("Quit", "Press to exit", rune(tcell.KeyCtrlQ), func() {
 		app.Stop()
@@ -188,7 +188,7 @@ func setPages() {
 	pages.AddPage(FORM_POD, tablePods, true, true).SetBorder(true)
 
 	pages.AddPage("ModalSettingsButtonOK", createModalSettingsButtonOK(), true, true)
-	pages.AddPage("Help", welcomeText, true, true).SetBorder(true)
+	pages.AddPage(FORM_HELP, welcomeText, true, true).SetBorder(true)
 
 	infoPages.AddPage("InformationText", informationText, true, true).SetBorder(true).SetTitle(TITLE_CONTEXT)
 
