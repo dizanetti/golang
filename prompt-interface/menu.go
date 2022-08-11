@@ -30,7 +30,7 @@ var copyLogsFromPodForm = tview.NewForm()
 var modalAppSettingsConfirm = tview.NewModal()
 
 var listMenu = tview.NewList().
-	AddItem("Filter", "Filter a list of Pod's/Services", rune(tcell.KeyCtrlF), func() {
+	AddItem("Filter", "Filter for Kubernetes", rune(tcell.KeyCtrlF), func() {
 		stringShortcuts = SHORTCUTS_FILTER
 		verifyContext()
 
