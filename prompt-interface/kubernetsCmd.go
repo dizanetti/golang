@@ -7,7 +7,7 @@ func verifyContext() {
 	if errContextK8 != nil {
 		FooterinformationText.SetText("Error message: " + errContextK8.Error()).SetTextColor(tcell.ColorRed)
 	} else {
-		informationText.SetText(CURRENT_CONTEXT + contextK8 + stringShortcuts).SetTextColor(tcell.ColorGreen)
+		informationText.SetText(CURRENT_CONTEXT + contextK8 + stringShortcuts)
 	}
 }
 

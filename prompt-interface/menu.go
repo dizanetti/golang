@@ -19,7 +19,7 @@ var describePod = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetScrolla
 var loadConfiguration = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetScrollable(true)
 
 var infoPages = tview.NewPages()
-var informationText = tview.NewTextView().SetTextColor(tcell.ColorGreen).SetTextAlign(tview.AlignCenter)
+var informationText = tview.NewTextView().SetTextColor(tcell.ColorDarkGrey).SetTextAlign(tview.AlignCenter)
 
 var FooterPages = tview.NewPages()
 var FooterinformationText = tview.NewTextView().SetTextColor(tcell.ColorRed).SetTextAlign(tview.AlignCenter)
