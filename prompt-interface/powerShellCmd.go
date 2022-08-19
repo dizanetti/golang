@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"os/exec"
+	"strconv"
 )
 
 type PowerShell struct {
@@ -100,4 +101,14 @@ func execPowerShellCopyFiles(podName string, pathLog string, pathPod string) (st
 	`
 
 	return posh.runCmd(processCmds)
+}
+
+func execPowerShellZipLogFolder(podName string, pathPod string) (stdOut string, stdErr string, err error) {
+	posh := New()
+
+	arguments := "exec -it " + podName + " -- bash -c "
+	tarArgs := strconv.Quote("tar -cf " + PATH_LOG_POD + " " + pathPod)
+	arguments = "kubectl " + arguments + tarArgs
+
+	return posh.runCmd(arguments)
 }

@@ -4,6 +4,7 @@ const SETTINGS_FILE string = "settings.json"
 const WELCOME_BANNER string = "banner_welcome.txt"
 
 const LOG_FOLDER string = "logs"
+const PATH_LOG_POD = "/logs/container/log_pod.tar"
 
 const GET_PODS string = "kubectl get pods"
 const GET_SERVICES string = "kubectl get services"

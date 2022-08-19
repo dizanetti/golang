@@ -19,7 +19,7 @@ var describePod = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetScrolla
 var loadConfiguration = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetScrollable(true)
 
 var infoPages = tview.NewPages()
-var informationText = tview.NewTextView().SetTextColor(tcell.ColorDarkGrey).SetTextAlign(tview.AlignCenter)
+var informationText = tview.NewTextView().SetTextColor(tcell.ColorYellow).SetTextAlign(tview.AlignCenter)
 
 var FooterPages = tview.NewPages()
 var FooterinformationText = tview.NewTextView().SetTextColor(tcell.ColorRed).SetTextAlign(tview.AlignCenter)
@@ -223,9 +223,15 @@ func setCopyLogsFromPodForm() {
 			} else {
 				pathPod := strings.Replace(settings.LogFolder, "{POD_NAME}", podName, -1)
 
-				_, err1, err2 := execPowerShellCopyFiles(podName, folder, pathPod)
-				if err2 != nil {
-					FooterinformationText.SetText(err1 + " | " + err2.Error())
+				_, err1Copy, err2Copy := execPowerShellZipLogFolder(podName, pathPod)
+				if err2Copy != nil {
+					FooterinformationText.SetText(err1Copy + " | " + err2Copy.Error())
+				} else {
+					tarFile := folder + "/" + podName + ".tar"
+					_, err1, err2 := execPowerShellCopyFiles(podName, tarFile, PATH_LOG_POD)
+					if err2 != nil {
+						FooterinformationText.SetText(err1 + " | " + err2.Error())
+					}
 				}
 			}
 		}
