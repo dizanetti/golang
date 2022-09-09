@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/gdamore/tcell/v2"
@@ -56,6 +57,37 @@ func createTablePods(commands ...string) {
 				podName := tablePods.GetCell(row, 1).Text
 
 				load(podName, "pod", tablePods, FORM_POD, SHORTCUTS_PODS, TITLE_POD)
+			} else if event.Rune() == rune(tcell.KeyCtrlJ) {
+				row, _ := tablePods.GetSelection()
+
+				podName := tablePods.GetCell(row, 1).Text
+
+				folder := LOG_FOLDER + "/" + podName
+
+				errRemoveFolder := removeFolder(folder)
+				if errRemoveFolder == nil {
+					errFolder := createFolder(folder)
+
+					if errFolder != nil {
+						FooterinformationText.SetText(errFolder.Error())
+					} else {
+						pathPod := strings.Replace(settings.LogFolder, "{POD_NAME}", podName, -1)
+
+						_, err1Copy, err2Copy := execPowerShellZipLogFolder(podName, pathPod)
+						if err2Copy != nil {
+							FooterinformationText.SetText(err1Copy + " | " + err2Copy.Error())
+						} else {
+							tarFile := folder + "/" + podName + ".tar"
+							_, err1, err2 := execPowerShellCopyFiles(podName, tarFile, PATH_LOG_POD)
+							if err2 != nil {
+								FooterinformationText.SetText(err1 + " | " + err2.Error())
+							} else {
+								FooterinformationText.SetText("Copying file with success from POD " + podName)
+							}
+
+						}
+					}
+				}
 			}
 
 			return event

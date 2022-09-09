@@ -44,10 +44,12 @@ func configureShortcuts() {
 			pagesMenu.SwitchToPage("Menu")
 
 			app.SetFocus(listMenu)
+			FooterinformationText.Clear()
 		} else if event.Rune() == rune(tcell.KeyCtrlU) {
 			pagesMenu.SwitchToPage(FOMR_MAINTENANCE)
 
 			app.SetFocus(listMaintenance)
+			FooterinformationText.Clear()
 		} else if event.Rune() == rune(tcell.KeyCtrlQ) {
 			app.Stop()
 		}
